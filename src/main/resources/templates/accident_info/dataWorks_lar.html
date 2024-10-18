@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>음식점 밀집도와 이륜차 사고 연관성</title>
+
+    <style>
+        .main_title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            background-color: #E5D9F2;
+        }
+        .card-body {
+            text-align: center;
+        }
+
+        .card-subtitle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px; 
+            background-color: #F5EFFF;
+        }
+
+        .collect_data {
+            height: 650px;
+            align-items: center;
+            display: flex;
+            justify-content: space-evenly;
+            border-color: #F5EFFF;
+            
+        }
+
+        .data {
+            width: 450px;
+            border: 3px solid #F5EFFF;
+
+        }
+
+        .data img {
+            width: 450px;
+            height: 400px;
+            object-fit: cover;
+            border-bottom: 3px solid #F5EFFF;
+        }
+
+        .data-body {
+            text-align: center;
+            width: 450px;
+
+        }
+
+        .data_area {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .data2 img{
+            width: 550px;
+            height: 400px;
+            object-fit: cover;
+            border: 3px solid #F5EFFF;
+        }
+
+        .data-body2 {
+            width: 1200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .caption2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .heatmaps {
+            display: flex;
+            flex-direction: column;
+            height: 350px;
+
+        }
+
+        .heatmap {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+
+        }
+
+        .heatmaps2 {
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+        }
+
+        .heatmaps3 {
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+
+        .caption {
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .heatmapGraph {
+            width: 350px;
+            border: 3px solid #F5EFFF;
+        }
+
+        .heatmapGraph2 {
+            width: 550px;
+            border: 3px solid #F5EFFF;
+        }
+
+        .heatmapGraph3 {
+            width: 700px;
+            border: 3px solid #F5EFFF;
+        }
+
+        .compareGraphs {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cap_compareGraphs {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .text_compareGraph {
+            text-align: center;
+            width: 500px;
+            border: 3px solid #F5EFFF;
+        }
+
+        .img_compareGraphs {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .compareGraphImg {
+            width: 500px;
+        }
+
+        .final {
+            display: flex;
+            justify-content: center;
+        }
+
+        .semifinal{
+            width: 800px;
+            height: 700px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            border: 3px solid #F5EFFF;
+        }
+
+        .conclusion {
+            width: 650px;          
+        }
+
+
+    </style>
+</head>
+
+<body>
+<th:block th:replace="~{/layout/basic::setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <p></p>
+        <div class="main_title">
+            <div class="card-body">
+                <h1 class="card-title"><b>배달음식점 분포도와 이륜차 사고 다발지역의 상관관계</b></h1>
+                <p></p>
+                <p class="card-text">코로나19 이후 배달대행서비스가 가파르게 증가했다.<br>점심과 저녁 식사시간에 도로에서 이륜차의 쾌속질주로 위험한 상황을 여러 번 목격한 경험이 있기에, <br>배달업(배달음식점)과 이륜차 사고율이 높은 연관성을 가질 것이라고 가정하고 관련 데이터를 분석해 실제 연관성을 측정해보고자 했다.<br>
+                    두 데이터의 연관성이 높다면, 이륜차 사고발생이 많을 것으로 보이는 지역의 도로교통 환경이나 제도를 정비해 <br>이륜차 사고율을 낮출 근거를 마련하는 데 보탬이 되리라 생각했다.</p>
+                <a href="#" class="card-link">참고사이트(링크)</a>
+            </div>
+        </div>
+
+        <p></p>
+        <!-- 데이터 수집 영역 -->
+        <p>
+            <div class="card-subtitle">
+                <h2><b>1. 데이터 수집</b></h2>
+            </div>
+        </p>
+
+        <div class="collect_data_area">
+            <div class="data_area">
+                <div class="data" >
+                    <img class="card-img-top2" src="/images/03_lar_data/03_lar_data01.png">
+                </div>
+                <div class="data" >
+                    <img class="card-img-top2" src="/images/03_lar_data/03_lar_data02.png">
+                </div>
+                <div class="data" >
+                    <img class="card-img-top2" src="/images/03_lar_data/03_lar_data04.png">
+                </div>
+            </div>
+            <div class="caption2">
+                <p><div class="data-body2">
+                    <span><h5>1-1 [왼쪽] 배달상점(음식점) 데이터 <br> 1-2 안전보건공단 이륜차 사고다발구역 조회서비스(중앙-JSON데이터, 오른쪽-csv데이터)</h5>
+                        경기대 빅데이터센터에서 연구한 ‘배달상점(음식점) 데이터’와 ‘안전보건공단 이륜차 사고다발구역 조회서비스'의 데이터가 <br>
+                        관련성이 높다고 판단, 두 데이터를 중심으로 분석하기로 했다.<br> 이륜차 사고다발구역 데이터는 파이썬에서 csv로 변환했다.</span>
+                </div></p>
+            </div>    
+                
+            <p></p>
+            <div class="data_area">
+                <div class="data2" >
+                    <img class="card-img-top2" src="/images/03_lar_data/03_lar_data05.png">
+                </div>
+                <div class="data2" >
+                    <img class="card-img-top2" src="/images/03_lar_data/03_lar_data07.png">
+                </div>
+            </div>
+            <div class="caption2">
+                <p><div class="data-body2">
+                    <span><h5>1-3 <br>배달 상점(음식점) 분포 데이터 가공 </h5>
+                    배달 상점(음식점) 분포(출처: 경기대 빅데이터센터) 데이터에 경도, 위도가 누락돼 있었다.<br> 카카오맵 API를 활용해 row데이터에 누락된 경도와 위도를 얻어왔고, <br>파이썬에서 경도, 위도 추가한 데이터를 csv데이터로 변환해 활용하기로 했다.<br>
+                    <a href="#" class="data-link">관련사이트 링크</a></span>
+                </div></p>
+            </div>
+
+        </div>
+
+        <p></p>
+        <p></p>
+        <div class="data-visualize">
+        <p><div class="card-subtitle"><h2><b>2. 데이터 시각화</b></h2></div></p>
+
+            <!-- 1번~4번 그래프 -->
+            <p><div class="caption"> 
+                <span><h5>1번 그래프</h5>
+                    서울 내 배달상점 분포 데이터를 파이썬에서 folium 을 활용해 지도에 시각화했다. 좌표를 마크하고 밀접지역의 상점 분포 숫자를 띄웠다.</span>
+            </div></p>
+            <div class="heatmaps3">
+                <div class="heatmap">
+                    <img src = "/images/03_lar_data/03_lar_data08.png" class="heatmapGraph3">
+                </div>
+            </div>
+
+            <p><div class="caption"> 
+                <span><h5>2번 그래프</h5>
+                    서울 내 이륜차 사고 다발구역 데이터를, 역시 파이썬에서 folium 을 활용해 지도에 시각화했다.</span>
+            </div></p>
+            <div class="heatmaps3">
+                <div class="heatmap">
+                    <img src = "/images/03_lar_data/03_lar_data09.png" class="heatmapGraph3">
+                </div>
+            </div>
+
+            <p><div class="caption"> 
+                <span><h5>3번 그래프</h5>
+                    서울 내 이륜차 사고 다발구역 데이터와 배달 상점 분포 데이터를 하나의 테이블로 합하고,<br>파이썬에서 folium 을 활용해 한 지도에 시각화했다.</span>
+            </div></p>
+            <div class="heatmaps3">
+                <div class="heatmap">
+                    <img src = "/images/03_lar_data/03_lar_data10.png" class="heatmapGraph3">
+                </div>
+            </div>
+
+            <p><div class="caption"> 
+                <span><h5>결론 도출</h5>
+                    파이썬의 haversine 함수를 활용, 이륜차 사고다발지역 한 곳을 기준으로 반경 1km 이내 배달상점 분포 수를 추출해 두 데이터의 상관도를 측정했다.<br>
+                    이륜차 사고다발지역 반경 1km 에 배달상점 분포 비율은 약 55%에 육박해, <br>두 데이터는 평균 이상의 상관관계를 가진다는 결론을 얻었다.</span>
+            </div></p>
+             <div class="heatmaps2">
+                <div class="heatmap">
+                    <img src = "/images/03_lar_data/03_lar_data12.png" class="heatmapGraph2">
+                    <img src = "/images/03_lar_data/03_lar_data11.png" class="heatmapGraph2">
+                </div>
+            </div>
+            
+            <!-- 소감 및 결론 -->
+            <p>
+                <div class="card-subtitle">
+                    <h2><b>3. 소감 및 결론</b></h2>
+                </div> </p>
+            <div class="final">
+                <div class="semifinal">
+                    <div class="conclusion">
+                        <h5><b>결론</b></h5>
+                        <span>
+                            처음 주제를 잡을 때, 저녁 시간 급히 달려가는 배달 이륜차 때문에 보행자로서 위험을 느꼈던 경험을 떠올렸다.
+‘배달 플랫폼의 증가-> 배달 이륜차 증가 -> 이륜차 사고 증가’라는 가정에서 시작했고, 데이터를 분석한 결과 평균 이상의 상관관계가 있다는 점을 입증해 이륜차 주행 및 사고 관련한 환경 개선 노력이 필요하다는 점을 느꼈다.<br><br>
+배달 플랫폼 급성장은 코로나 펜데믹 직후인 2020년 이후의 이슈다. 팬데믹 이후로 배달서비스 이용은 최근 감소 추세에 접어들었다고 한다.
+최근 이슈이므로 데이터가 상대적으로 적었고, 2020-2022년까지 국가 및 민간에서 배달업 실태조사를 비롯한 다양한 조사 분석을 실시했으나
+이후 데이터는 찾기 어려웠다. 즉 팬데믹 이후까지 조사/분석이 꾸준히 이뤄지지 않은 것 같았다.<br>
+또한 내가 이용한 ‘배달 상점 분포’ 데이터는, 숫자 자체는 크지만 지역 편향적인 점이 있어(예를 들어, 서울의 대표적 번화가인 종로구, 중구 지역의 음식점 수가 구로구, 금천구의 음식점 수에 비해 무척 적게 집계된 점) 완벽하다고 볼 수 없었다. 이러한 데이터의 한계와 내 분석 방법의 제한성 등으로 좀 더 나은 결과물을 내지 못한 점이 개인적으로 아쉽다.
+<br><br>
+그러나 데이터를 통해 결론을 냄으로서, 교통사고와 원인의 연관관계를 고려해 사고다발지역을 예측하는 데 도움이 되고, 사고율 감소 방안을 마련하는 데 근거자료로 쓰일 수 있을 것이라 생각한다. 주제 분석을 뒷받침할 만한 데이터를 풍부하게 수집하고, 이를 면밀히 가공한 후, 데이터 분석 관련 학습을 통해 방법론을 더 익혀 다음 프로젝트에서는 나은 결과물을 얻고자 분발해야겠다.
+                        </span>
+                    </div>
+                </div>
+            </div>
+         </div>
+    </th:block>
+</th:block>
+</body>
+</html>

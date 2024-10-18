@@ -1,0 +1,338 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet"
+   href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/css/ol.css"
+   type="text/css">
+<style>
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenLayers GeoJSON Data Example</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol/ol.css"
+   type="text/css">
+<script src="https://cdn.jsdelivr.net/npm/ol/ol.js"></script>
+<style>
+.map {
+   width: 100%;
+   height: 80%;
+}
+#markerList {
+            width: 25%;
+            height: 400px;
+            overflow-y: scroll;
+            display: inline-block;
+            vertical-align: top;
+            background-color: #f1f1f1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            position: absolute;
+            left: 15%;
+            top : 10%;
+            opacity: 0.8;
+        }
+        .marker-item {
+            cursor: pointer;
+            padding: 5px;
+            margin: 5px 0;
+            border-bottom: 1px solid #ccc;
+        }
+        .marker-item:hover {
+            background-color: #ddd;
+        }
+        #popup {
+            position: absolute;
+            background-color: white;
+            padding: 10px;
+            border: 1px solid black;
+            display: none;
+        }
+</style>
+
+<script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script
+   src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.9.0/build/ol.js"></script>
+<title>OpenLayers 국가교통정보센터 wmts TileSample</title>
+
+<style>
+</style>
+<script type="text/javascript" th:inline="javascript">
+   $(function() {
+
+      // console.log(tot);
+   });
+   function returnArr(eventType) {
+      let acc = [[${acc}]];
+      let cor = [[${cor}]];
+      let etc = [[${etc}]];
+      
+      
+      // xml로 파싱하기
+      // if(eventType == 'acc'){
+      //    return makeArr(acc);
+      // }else if(eventType == 'cor'){
+      //    return makeArr(cor);
+      // }else if(eventType == 'etc'){
+      //    return makeArr(etc);
+      // }
+
+      const returnArr = [
+         ...makeArr(acc),
+         ...makeArr(cor),
+         ...makeArr(etc)
+      ]
+
+      return returnArr;
+           
+   }
+
+   function makeArr(xmlString){
+      let xmlParser = new DOMParser(); //DOM파서 객체를 생성 
+      let xmlDoc = xmlParser.parseFromString(xmlString, "text/xml"); // parseFromString() 메소드를 이용해 문자열을 파싱함. 
+      console.log(xmlDoc);
+      let body = xmlDoc.getElementsByTagName('body')[0];
+      let tot = body.getElementsByTagName('totalCount')[0].innerHTML // 24개
+
+      let arr = [];
+      let roadNoCount = {};
+      let icon='';
+
+      if(xmlString == 'acc'){
+         icon = '/icons/warning.png';
+      }
+      $.each(   body.getElementsByTagName('items')[0].getElementsByTagName('item'),function(i, item) {
+                   
+                        if(item.getElementsByTagName('eventType')[0].innerHTML == '교통사고'){
+                           icon = '/icons/warning.png';
+                        }else {
+                           icon = '/icons/Construction.png';
+                        }
+                     let data = {
+                        "type" : item.getElementsByTagName('type')[0].innerHTML,
+                        "eventType" : item
+                              .getElementsByTagName('eventType')[0].innerHTML,
+                        "eventDetailType" : item
+                              .getElementsByTagName('eventDetailType')[0].innerHTML,
+                        "startDate" : item
+                              .getElementsByTagName('startDate')[0].innerHTML,
+                        "coordX" : item.getElementsByTagName('coordX')[0].innerHTML,
+                        "coordY" : item.getElementsByTagName('coordY')[0].innerHTML,
+                        "linkId" : item.getElementsByTagName('linkId')[0].innerHTML,
+                        "roadName" : item
+                              .getElementsByTagName('roadName')[0].innerHTML,
+                        "roadNo" : item.getElementsByTagName('roadNo')[0].innerHTML,
+                        "roadDrcType" : item
+                              .getElementsByTagName('roadDrcType')[0].innerHTML,
+                        "lanesBlockType" : item
+                              .getElementsByTagName('lanesBlockType')[0].innerHTML,
+                        "lanesBlocked" : item
+                              .getElementsByTagName('lanesBlocked')[0].innerHTML,
+                        "message" : item
+                              .getElementsByTagName('message')[0].innerHTML,
+                        "endDate" : item
+                              .getElementsByTagName('endDate')[0].innerHTML,
+                        
+                        
+                     }
+                     
+                     let inputDate = {
+                        name : item.getElementsByTagName('roadName')[0].innerHTML
+                              + item.getElementsByTagName('message')[0].innerHTML,
+                        coordinates : [
+                              item.getElementsByTagName('coordX')[0].innerHTML,
+                              item.getElementsByTagName('coordY')[0].innerHTML ],
+                        description : item
+                              .getElementsByTagName('message')[0].innerHTML,
+                        icon : icon
+                     }
+                     
+                     let roadNo = item.getElementsByTagName('roadNo')[0].innerHTML;
+                     
+                     
+                      // 도로번호별로 그룹화
+                       if (roadNoCount[roadNo]) {
+                           roadNoCount[roadNo].count++;
+                           roadNoCount[roadNo].data.push(inputDate);
+                       } else {
+                           roadNoCount[roadNo] = { count: 1, data: [inputDate] };
+                       }
+
+                     //arr.push(data);
+                     arr.push(inputDate);
+
+                  });
+
+      
+
+      return arr;
+   }
+
+</script>
+
+<link rel="icon" type="image/x-icon" th:href="@{/icons/warning.png}" />
+
+
+</head>
+
+<th:block th:replace="~{/layout/basic::setContent(~{this::content})}">
+   <th:block th:fragment="content">
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+   <!--begin::App Wrapper-->
+
+   <div class="app-wrapper">
+     
+     
+         
+         <!-- 메인 content 부분 -->
+         <div class="content">
+            <div id="map" class="map"></div>
+            <div id="markerList"></div>
+            <div id="popup" class="ol-popup" style="display: none;"></div>
+            
+            <script type="text/javascript">
+               // 기본 맵 설정
+               var map = new ol.Map({
+                  target : 'map',
+                  layers : [ new ol.layer.Tile({
+                     source : new ol.source.OSM()
+                  }) ],
+                  view : new ol.View({
+                     projection : 'EPSG:3857',
+                     center : ol.proj
+                           .fromLonLat([ 127.766922, 35.907757 ]),
+                     zoom : 7,
+                     maxZoom : 20,
+                     minZoom : 7,
+                  }),
+               });
+               var tile = new ol.layer.Tile(
+                     {
+                        source : new ol.source.XYZ(
+                              {
+                                 url : 'https://its.go.kr:9443/geoserver/gwc/service/wmts/rest/ntic:N_LEVEL_{z}/ntic:REALTIME/EPSG:3857/EPSG:3857:{z}/{y}/{x}?format=image/png8'
+                              })
+                     });
+               map.addLayer(tile);
+
+               // 마커 데이터 배열 (서울, 부산, 대구)
+               var markerData = returnArr();
+               
+               
+
+               // 마커 스타일 정의
+               var iconStyle = new ol.style.Style(
+                     {
+                        image : new ol.style.Icon(
+                              {
+                                 anchor : [ 0.2, 0.5 ],
+                                 src : '/icons/warning.png'
+                              })
+                     });
+
+               // 벡터 소스에 마커 추가
+               var vectorSource = new ol.source.Vector();
+
+               markerData.forEach(function(marker,index) {
+                  // 좌표 변환 (WGS84 -> EPSG:3857)
+                  var markerCoords = ol.proj
+                        .fromLonLat(marker.coordinates);
+
+                  // 마커 피처 생성
+                  var feature = new ol.Feature({
+                     geometry : new ol.geom.Point(markerCoords),
+                     name : marker.name,
+                     description : marker.description
+                  });
+
+                  // 마커에 스타일 적용
+                  feature.setStyle(new ol.style.Style(
+                     {
+                        image : new ol.style.Icon(
+                              {
+                                 anchor : [ 0.2, 0.5 ],
+                                 src : marker.icon
+                              })
+                     })
+                  );
+
+                  // 벡터 소스에 마커 추가
+                  vectorSource.addFeature(feature);
+                  
+                   // 마커 리스트에 추가
+                  $('#markerList').append('<div class="marker-item" data-index="' + index + '" desc="'+marker.description+'">' + marker.name + '</div>');
+               });
+               
+               
+
+               // 벡터 레이어 설정
+               var vectorLayer = new ol.layer.Vector({
+                  source : vectorSource
+               });
+
+               // 벡터 레이어를 지도에 추가
+               map.addLayer(vectorLayer);
+               //map.addLayer($('#markerList'));
+               
+               // 마커 리스트 클릭 시 지도 이동
+                  $(document).on('click', '.marker-item', function () {
+                      var index = $(this).data('index');
+                      var coordinates = ol.proj.fromLonLat(markerData[index].coordinates);
+                      
+                     // 지도 중심 이동
+                      map.getView().animate({
+                          center: coordinates,
+                          duration: 1000, // 애니메이션 효과
+                          zoom: 15
+                      });
+                      
+                      // 
+                      // 팝업 내용 설정 및 위치 업데이트
+                           popup.innerHTML = '<b>' + $(this).html() + '</b><br>'
+                                 + $(this).attr('desc');
+                           popup.style.display = 'block'; // 팝업 표시
+                           popup.style.left = '823px';
+                           popup.style.top = '353px';
+                      
+                  });
+
+               // 팝업 엘리먼트
+               var popup = document.getElementById('popup');
+
+               // 클릭 이벤트 설정
+               map.on('click', function(event) {
+                  // 클릭한 좌표에서 피처(마커) 탐색
+                  map.forEachFeatureAtPixel(event.pixel,
+                        function(feature) {
+                           var coordinates = feature.getGeometry()
+                                 .getCoordinates();
+                           var name = feature.get('name'); // 마커의 이름
+                           var description = feature
+                                 .get('description'); // 마커의 설명
+
+                           // 팝업 내용 설정 및 위치 업데이트
+                           popup.innerHTML = '<b>' + name + '</b><br>'
+                                 + description;
+                           popup.style.display = 'block'; // 팝업 표시
+                           popup.style.left = event.pixel[0] + 'px';
+                           popup.style.top = event.pixel[1] + 'px';
+                        });
+               });
+
+               // 마우스가 움직일 때 팝업 닫기
+               map.on('pointermove', function() {
+                  popup.style.display = 'none';
+               });
+            </script>
+         </div>
+      
+   </div>
+
+
+
+
+
+</body>
+</th:block>
+</th:block>
+</html>

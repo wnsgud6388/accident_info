@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전체 사고와 음주운전 사고 연관성</title>
+
+    <style>
+        .main_title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            background-color: #E5D9F2;
+        }
+        .card-body {
+            text-align: center;
+        }
+
+        .card-subtitle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px; 
+            background-color: #F5EFFF;
+        }
+
+        .collect_data {
+            height: 650px;
+            align-items: center;
+            display: flex;
+            justify-content: space-evenly;
+            border-color: #F5EFFF;
+            
+        }
+
+        .data {
+            width: 450px;
+            border: 3px solid #F5EFFF;
+
+        }
+
+        .data img {
+            width: 450px;
+            height: 400px;
+            object-fit: cover;
+            border-bottom: 3px solid #F5EFFF;
+        }
+
+        .data-body {
+            text-align: center;
+            width: 450px;
+
+        }
+
+        .data_area {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .data2 img{
+            width: 550px;
+            height: 400px;
+            object-fit: cover;
+            border: 3px solid #F5EFFF;
+        }
+
+        .data-body2 {
+            width: 1200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .caption2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .heatmaps {
+            display: flex;
+            flex-direction: column;
+            height: 350px;
+
+        }
+
+        .heatmap {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+
+        }
+
+        .heatmaps2 {
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+        }
+
+        .heatmaps3 {
+            display: flex;
+            flex-direction: column;
+            height: 700px;
+        }
+
+        .caption {
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .heatmapGraph {
+            width: 350px;
+            border: 3px solid #F5EFFF;
+        }
+
+        .heatmapGraph2 {
+            width: 550px;
+            border: 3px solid #F5EFFF;
+        }
+
+        .heatmapGraph3 {
+            width: 700px;
+            border: 3px solid #F5EFFF;
+        }
+
+        .compareGraphs {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cap_compareGraphs {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .text_compareGraph {
+            text-align: center;
+            width: 500px;
+            border: 3px solid #F5EFFF;
+        }
+
+        .img_compareGraphs {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .compareGraphImg {
+            width: 500px;
+        }
+
+        .final {
+            display: flex;
+            justify-content: center;
+        }
+
+        .semifinal{
+            width: 800px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            border: 3px solid #F5EFFF;
+        }
+
+        .conclusion {
+            width: 650px;          
+        }
+
+
+    </style>
+</head>
+
+<body>
+<th:block th:replace="~{/layout/basic::setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <p></p>
+        <div class="main_title">
+            <div class="card-body">
+                <h1 class="card-title"><b>전체 사고와 음주운전 사고의 상관관계</b></h1>
+                <p></p>
+                <p class="card-text">전체 사고에서 음주운전 사고가 차지하는 비율을 확인하고 <br> 
+                    사고가 많은 지역에서 음주운전 사고가 많을 것인지 분석하고자 했다.</p>
+                <a href="#" class="card-link">참고사이트(링크)</a>
+            </div>
+        </div>
+
+        <p></p>
+        <!-- 데이터 수집 영역 -->
+        <p>
+            <div class="card-subtitle">
+                <h2><b>1. 데이터 수집</b></h2>
+            </div>
+        </p>
+
+        <div class="collect_data_area">
+            <div class="collect_data">
+                <div class="data" >
+                    <img class="card-img-top" src="/images/02_uyj_data/02_uyj_data01.png" alt="Data image1">
+                    <div class="data-body">
+                        <h5 class="card-title">1-1<br>한국도로교통공단 <br>교통사고분석시스템</h5>
+                        <p class="card-text">한국도로교통공단의 교통사고분석시스템 <br> -> 시군구별 교통사고(기초)(시군구별데이터 -> 서울시) <br>2014년 ~ 2023년</p>
+                        <a href="#" class="data-link">관련사이트 링크</a>
+                    </div>
+                </div>
+                <div class="data" >
+                    <img class="card-img-top" src="/images/02_uyj_data/02_uyj_data02.png" alt="Data image2">
+                    <div class="data-body">
+                        <h5 class="card-title">1-2<br>한국도로교통공단<br>교통사고분석시스템</h5>
+                        <p class="card-text">한국도로교통공단의 교통사고분석시스템 <br>-> 음주운전 교통사고(시군구별데이터 -> 서울시) <br>2014년 ~ 2023년</p>
+                        <a href="#" class="data-link">관련사이트 링크</a>
+                    </div>
+                </div>
+            </div>
+            <p></p>
+                <div class="data_area">
+                    <div class="data2" >
+                        <img class="card-img-top2" src="/images/02_uyj_data/02_uyj_data03.png">
+                    </div>
+                    <div class="data2" >
+                        <img class="card-img-top2" src="/images/02_uyj_data/02_uyj_data04.png">
+                    </div>
+                </div>
+                <div class="caption2">
+                    <p><div class="data-body2">
+                        <span><h5>1-3<br> 시군구별 전체사고데이터</h5>
+                        시군구별 전체 사고 데이터를 얻을 수 있었다. <br>해당 데이터는 연도 및 구별로 각각
+                            사고 수(건)를 5년 단위로 조회 가능해 2014년부터 2023년의 정보를 제공 받았다.<br>
+                        <a href="#" class="data-link">관련사이트 링크</a></span>
+                    </div></p>
+                </div>
+            <p></p>
+            <div class="data_area">
+                <div class="data2" >
+                    <img class="card-img-top2" src="/images/02_uyj_data/02_uyj_data05.png">
+                </div>
+                <div class="data2" >
+                    <img class="card-img-top2" src="/images/02_uyj_data/02_uyj_data06.png">
+                </div>
+            </div>
+            <div class="caption2">
+                <p><div class="data-body2">
+                    <span><h5>1-4 <br> 시군구별 음주운전 사고 데이터</h5>
+                    시군구별 음주운전 사고 데이터를 얻을 수 있었다. <br>해당 데이터는 연도 및 구별로 각각
+                        사고 수(건),를 5년기간 단위로 조회가 가능해, 2014년부터 2023년의 정보를 제공 받았다.<br>
+                    <a href="#" class="data-link">관련사이트 링크</a></span>
+                </div></p>
+            </div>
+
+        </div>
+
+        <p></p>
+        <p></p>
+        <div class="data-visualize">
+        <p><div class="card-subtitle"><h2><b>2. 데이터 시각화</b></h2></div></p>
+
+            <!-- 1번 그래프(4개 구별 꺾은선) -->
+            <p><div class="caption"> 
+                <span><h5>1번 그래프</h5>
+                    사고가 가장 많은 4개 구의 그래프를 그려 보았다.<br>
+                    <a href="#">그래프 작성 코드 보기</a></span>
+            </div></p>
+             <div class="heatmaps">
+                <div class="heatmap">
+                    <img src = "/images/02_uyj_data/02_uyj_data07.png" class="heatmapGraph">
+                    <img src = "/images/02_uyj_data/02_uyj_data08.png" class="heatmapGraph">
+                    <img src = "/images/02_uyj_data/02_uyj_data09.png" class="heatmapGraph">
+                    <img src = "/images/02_uyj_data/02_uyj_data10.png" class="heatmapGraph">
+                </div>
+            </div>
+
+            <!-- 2번 그래프(4개 구별 파이) -->
+            <p><div class="caption"> 
+                <span><h5>2번 그래프</h5>
+                    전체 사고 수가 가장 많은 4개 구의 음주운전 사고 비율을 pie차트로 그려 보았다.<br>
+                    <a href="#">그래프 작성 코드 보기</a></span>
+            </div></p>
+             <div class="heatmaps">
+                
+                <div class="heatmap">
+                    <img src = "/images/02_uyj_data/02_uyj_data11.png" class="heatmapGraph">
+                    <img src = "/images/02_uyj_data/02_uyj_data12.png" class="heatmapGraph">
+                    <img src = "/images/02_uyj_data/02_uyj_data13.png" class="heatmapGraph">
+                    <img src = "/images/02_uyj_data/02_uyj_data14.png" class="heatmapGraph">
+                </div>
+            </div>
+
+            <!-- 3번 그래프(막대그래프) -->
+            <p><div class="caption"> 
+                <span><h5>3번 그래프</h5>
+                    전체사고 수가 많은 10개 구와 음주사고 수가 많은 10개 구의 자료를 막대그래프를 그려 시각화 하여보았다.<br>
+                    <a href="#">그래프 작성 코드 보기</a></span>
+            </div></p>
+             <div class="heatmaps2">
+                <div class="heatmap">
+                    <img src = "/images/02_uyj_data/02_uyj_data15.png" class="heatmapGraph2">
+                    <img src = "/images/02_uyj_data/02_uyj_data16.png" class="heatmapGraph2">
+                </div>
+            </div>
+
+            <!-- 4번 그래프(막대그래프) -->
+            <p><div class="caption"> 
+                <span><h5>4번 그래프</h5>
+                    서울시 모든 구의 음주운전 사고 건수 10년치를 시각화 했다.<br>
+                    <a href="#">그래프 작성 코드 보기</a></span>
+            </div></p>
+             <div class="heatmaps3">
+                <div class="heatmap">
+                    <img src = "/images/02_uyj_data/02_uyj_data16.png" class="heatmapGraph3">
+                </div>
+            </div>
+
+
+            
+            <!-- 소감 및 결론 -->
+            <p>
+                <div class="card-subtitle">
+                    <h2><b>3. 소감 및 결론</b></h2>
+                </div> </p>
+            <div class="final">
+                <div class="semifinal">
+                    <div class="conclusion">
+                        <h5><b>결론</b></h5>
+                        <span>전체 사고에서 음주운전 사고는 10% 미만을 차지하는 정도다.
+                            전체 사고와 음주운전 사고는 0.88정도로 매우 큰 양적상관관계를 가진다. 하지만 마포구의 경우 음주운전 비율은 높으나 전체 사고는 상대적으로 적은 편으로, 홍대 일대나 신촌 등 지역을 중심으로 음주운전 발생 수는 많지만 사고와는 크게 관계 없는 결과를 보이는 것으로 확인돼 다른 요인 또한 존재하는 것으로 보인다. 데이터 분석 시 다른 요인도 고려해 분석했다면 조금 더 완벽한 분석이 가능했을 것 같아 아쉬움이 남는다.</span>
+                    </div>
+                </div>
+            </div>
+         </div>
+    </th:block>
+</th:block>
+</body>
+</html>

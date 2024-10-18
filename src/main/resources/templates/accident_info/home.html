@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<script
+	src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <script type="module">
+    
+        var swiper = new Swiper('.swiper', {
+          direction: 'vertical',
+          autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+          },
+          //pagination: {
+            //el: '.swiper-pagination',
+          //  clickable: true,
+          //},
+        });
+      </script>
+      <style>
+        
+      
+        body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .swiper {
+      width: 2000px;
+      height: 600px;
+      position: relative;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: flex-start;
+    }
+   
+    .formpage {
+        margin-top: 100px;
+    }
+
+    .title {
+        display: flex;
+        justify-content: center;
+    }
+
+    .loginform {
+        display: flex;
+        justify-content: center;
+    }
+
+    .mb-3 {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 400px;
+    }
+
+    .form-control {
+        width: 250px;
+        height: 50px;
+        margin-left: 15px;
+    }
+
+    .form-label {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100px;
+        height: 50px;
+    }
+
+    .btns {
+        width: 400px;
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .profile-card{
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 400px;
+            text-align: center;
+            height: 300px;
+        }
+
+        .profile-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .profile-card h2 {
+            margin: 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .profile-card p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .profile-card button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .profile-card button:hover {
+            background-color: #45a049;
+        }
+
+        .profile-card .secondary-btn {
+            background-color: #f44336;
+        }
+
+        .profile-card .secondary-btn:hover {
+            background-color: #d32f2f;
+        }
+
+
+      </style>
+</head>
+<body>
+    <th:block th:replace="~{/layout/basic::setContent(~{this::content})}">
+        <th:block th:fragment="content">
+        <div style="display: flex; margin-top: 20px; margin-left: 600px; margin-bottom: 20px; align-items: center;">
+        <img src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAV1BMVEVHcEwuNo8uNo8uNo8uNo8uNo9XLX8ZNZInMI0UIYgfKYv1GheyJVNucqvJyt69vtfg4OyWmcDvFhn///+FiLfT1OSmqMpPV54CEoRkaKY9RJWytNHz9Pj0Y71tAAAABnRSTlMAadj+/8SpEybaAAAA10lEQVR4AaWTBQLDIBAE4zkunsXp/99ZqLtOBBlcsizLi7K6oyzyLFJXT6hjveopeVY8l0VWPad8JauPZNOSOEAVp4CPsum6fhgPDNU0Rxbey7bv1nXBAXkI6KJmO40KmNWkgXGapKh2koQZmrZia4DF2hGzTT1HGR0pQMWC5KJkMcbEabReGWB+LGkQAZD8UMZmgY1NCX8vWQNSEDNbnQakLuWuovZyiWi9pJlc9Ako5TY44+jcbJgDu7OaB75YeBZckT0h6P2W/SPL1wfs5dF8eahfXYctmsgYwdkfba4AAAAASUVORK5CYII=">    
+        <h2 style="margin-left: 10px; font-weight: 600;">2번째줄 프로젝트</h2>
+        </div>    
+        
+        <img src="/its/6.png" style="height: 250px; width: 2200px;">
+        <div style="display: flex;">
+            <h4 style="font-weight: 600; margin-left: 60px; margin-top: 40px;">실시간 돌발정보 제공</h4>
+            <h4 style="font-weight: 600; margin-left: 400px; margin-top: 40px;">관련 사이트</h4>
+           
+        </div>
+        <div style="display: flex;">
+          <a th:href='@{/accident_info/map}'><img src="/its/map.png" style="margin-top: 20px; margin-left: 60px; width: 300px; height: 400px; border-radius: 40px;"></a>
+          <a th:href="@{/accident_info/otherWeb}"><img src="/its/otherWeb.png" style="margin-top: 20px; margin-left: 300px; width: 300px; height: 400px; border-radius: 40px;"></a>
+
+          <div class="profile-card" style="margin-left: 150px; margin-top: 50px;">
+            <img src="/its/avatar2.png" alt="프로필 이미지">
+            <h2>[[${session.loginMember.name}]]</h2>
+            <p>[[${session.loginMember.email}]]</p>
+            <button>내 정보 관리</button>
+            <button class="secondary-btn" onclick="location.href='/accident_info/logout';">로그아웃</button>
+        </div>
+      </div>
+
+        <h4 style="font-weight: 600; margin-left: 60px; margin-top: 80px; border-bottom:2px solid #e0e0e0;">데이터 시각화</h4>
+        <div style="margin-top: 30px;">
+            <span style="margin-left: 250px;"><img src="/its/한준형.png" style="width: 380px; height: 170px; margin-bottom: 40px; "></span>
+            <span style="margin-left: 30px;"><img src="/its/엄영준2.png" style="width: 380px; height: 170px; margin-bottom: 40px;"></span>
+            <span style="margin-left: 30px;"><img src="/its/이아림.png" style="width: 280px; height: 170px; margin-bottom: 40px; border-radius: 40px;"></span>
+            
+        </div>
+
+        
+        
+           
+
+        </th:block>
+    </th:block>
+</body>
+</html>

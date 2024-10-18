@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <th:block th:replace="~{/layout/basic::setContent(~{this::content})}">
+        <th:block th:fragment="content">
+            <h1>관련 사이트</h1>
+            
+            <ul class="list-group" style="width: 800px; margin: auto;">
+                <li class="list-group-item d-flex justify-content-between align-items-center"  style="height: 70px;">
+                    <img src = "https://www.its.go.kr/css/images/contents/icon_related01.png">
+                  <span class="badge bg-primary rounded-pill" onclick="location.href='http://www.ggex.co.kr/'">바로가기</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center" style="height: 70px;">
+                    <img src = "https://www.its.go.kr/css/images/contents/icon_related02.png">
+                    <span class="badge bg-primary rounded-pill" onclick="location.href='https://www.yseway.com/user/nd72625.do'">바로가기</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center" style="height: 70px;">
+                    <img src = "https://www.its.go.kr/css/images/contents/icon_related03.png">
+                    <span class="badge bg-primary rounded-pill"onclick="location.href='http://www.dbeway.co.kr/'"> 바로가기</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center" style="height: 70px;">
+                    <img src = "https://www.its.go.kr/css/images/contents/icon_related04.png">
+                  <span class="badge bg-primary rounded-pill" onclick="location.href='http://www.roadplus.co.kr/main/main.do'">바로가기</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center" style="height: 70px;">
+                    <img src = "https://www.its.go.kr/css/images/contents/icon_related05.png">
+                  <span class="badge bg-primary rounded-pill" onclick="location.href='http://www.busanulsanway.co.kr/'">바로가기</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center" style="height: 70px;">
+                    <img src = "https://www.its.go.kr/css/images/contents/icon_related06.png">
+                  <span class="badge bg-primary rounded-pill" onclick="location.href='https://www.seoulbeltway.co.kr/'">바로가기</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center"  style="height: 70px;">
+                    <img src = "https://www.its.go.kr/css/images/contents/icon_related07.png">
+                  <span class="badge bg-primary rounded-pill" onclick="location.href='http://www.schighway.co.kr/'">바로가기</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center" style="height: 70px;">
+                    <img src = "https://www.its.go.kr/css/images/contents/icon_related08.png">
+                  <span class="badge bg-primary rounded-pill" onclick="location.href='http://www.hiway21.co.kr/user/nd71114.do'">바로가기</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center" style="height: 70px;">
+                    <img src = "https://www.its.go.kr/css/images/contents/icon_related09.png">
+                  <span class="badge bg-primary rounded-pill" onclick="location.href='http://www.incheonbridge.com/'">바로가기</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center" style="height: 70px;">
+                    <img src = "https://www.its.go.kr/css/images/contents/icon_related10.png">
+                  <span class="badge bg-primary rounded-pill" onclick="location.href='http://www.3giway.co.kr/'">바로가기</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center" style="height: 70px;">
+                    <img src = "https://www.its.go.kr/css/images/contents/icon_related11.png">
+                  <span class="badge bg-primary rounded-pill" onclick="location.href='http://www.cneway.co.kr/'">바로가기</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center" style="height: 70px;">
+                    <img src = "https://www.its.go.kr/css/images/contents/icon_related12.png">
+                  <span class="badge bg-primary rounded-pill" onclick="location.href='http://www.sseway.co.kr/main/main.jsp'">바로가기</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center" style="height: 70px;">
+                    <img src = "https://www.its.go.kr/css/images/contents/icon_related13.png">
+                  <span class="badge bg-primary rounded-pill" onclick="location.href='http://gits.gg.go.kr/web/main/index.do'">바로가기</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center" style="height: 70px;">
+                    <img src = "https://www.its.go.kr/css/images/contents/icon_related14.png">
+                  <span class="badge bg-primary rounded-pill" onclick="location.href='https://its.goyang.go.kr/main.do'">바로가기</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center" style="height: 70px;">
+                    <img src = "https://www.its.go.kr/css/images/contents/icon_related15.png">
+                  <span class="badge bg-primary rounded-pill" onclick="location.href='http://www.gccity.go.kr/main/page.do?mCode=F075010020&amp;cIdx=573'">바로가기</span>
+                </li>
+
+              </ul>
+            
+            <div style="margin-left: 1300px; margin-top: 50px;">
+                <a href="#" class="btn btn-secondary" th:href="@{/accident_info/list}" >목록으로</a>
+            </div>
+
+        </th:block>
+    </th:block>
+</html>
